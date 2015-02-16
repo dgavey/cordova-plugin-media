@@ -623,7 +623,8 @@
         jsString = [NSString stringWithFormat:@"%@(\"%@\",%d,%@);", @"cordova.require('org.apache.cordova.media.Media').onStatus", mediaId, MEDIA_ERROR, [self createMediaErrorWithCode:MEDIA_ERR_DECODE message:nil]];
     }
     if (self.avSession) {
-        [self.avSession setActive:NO error:nil];
+        //Reset back to playback option after record done. Fixes HTML5 Audio playback after record
+        [self.avSession setCategory:AVAudioSessionCategoryRecord error:nil];
     }
     [self.commandDelegate evalJs:jsString];
 }
