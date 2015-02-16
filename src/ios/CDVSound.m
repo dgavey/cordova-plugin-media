@@ -624,7 +624,8 @@
     }
     if (self.avSession) {
         //Reset back to playback option after record done. Fixes HTML5 Audio playback after record
-        [self.avSession setCategory:AVAudioSessionCategoryRecord error:nil];
+        [self.avSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+        [self.avSession setActive:NO error:nil];
     }
     [self.commandDelegate evalJs:jsString];
 }
